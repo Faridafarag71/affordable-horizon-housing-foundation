@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affordable Horizon Housing Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:    #2D5016;
+    --moss:      #4A7C2F;
+    --fern:      #6BAA3A;
+    --sage:      #A8C97F;
+    --dew:       #D6EAB8;
+    --gold:      #C9A227;
+    --amber:     #E8B84B;
+    --honey:     #F5D07A;
+    --cream:     #FAF5E4;
+    --bark:      #3B2A14;
+    --white:     #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6%;
+    background: rgba(45, 80, 22, 0.96);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 38px; height: 38px; }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .nav-logo-text span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--honey);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo-text span:last-child {
+    font-size: 0.65rem; font-weight: 300;
+    color: var(--sage); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--dew);
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-cta {
+    background: var(--gold); color: var(--forest) !important;
+    padding: 9px 22px; border-radius: 30px;
+    font-weight: 700 !important;
+    transition: background 0.25s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--amber) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, #1a3509 0%, #2D5016 40%, #3d6b20 70%, #4A7C2F 100%);
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; opacity: 0.06;
+    background-image:
+      radial-gradient(circle at 20% 80%, var(--gold) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, var(--amber) 0%, transparent 40%);
+  }
+  /* Leaf silhouettes */
+  .hero-leaves {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .leaf {
+    position: absolute;
+    opacity: 0.12;
+    animation: sway 8s ease-in-out infinite;
+  }
+  .leaf svg { fill: var(--sage); }
+  .leaf:nth-child(1) { top: 8%; right: 5%; animation-delay: 0s; }
+  .leaf:nth-child(2) { top: 55%; right: 12%; animation-delay: 2s; transform: rotate(45deg); }
+  .leaf:nth-child(3) { top: 20%; right: 22%; animation-delay: 1s; transform: rotate(-20deg) scale(0.7); }
+  .leaf:nth-child(4) { bottom: 10%; right: 3%; animation-delay: 3s; transform: scale(1.4); }
+  .leaf:nth-child(5) { top: 70%; right: 30%; animation-delay: 1.5s; transform: rotate(120deg) scale(0.5); }
+
+  @keyframes sway {
+    0%,100% { transform: rotate(0deg) translateX(0); }
+    33% { transform: rotate(3deg) translateX(6px); }
+    66% { transform: rotate(-2deg) translateX(-4px); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px; padding: 140px 6% 80px;
+    animation: fadeUp 1s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(201,162,39,0.25); border: 1px solid var(--gold);
+    color: var(--honey); font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; padding: 6px 18px; border-radius: 30px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1.15; font-weight: 700;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .hero h1 em { color: var(--amber); font-style: italic; }
+  .hero p {
+    font-size: 1.1rem; line-height: 1.75;
+    color: var(--dew); font-weight: 300;
+    max-width: 520px; margin-bottom: 44px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--forest);
+    padding: 15px 36px; border-radius: 40px;
+    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.04em;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+    box-shadow: 0 4px 20px rgba(201,162,39,0.4);
+  }
+  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,162,39,0.5); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+    padding: 13px 32px; border-radius: 40px;
+    font-weight: 400; font-size: 0.95rem; letter-spacing: 0.04em;
+    text-decoration: none; cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--amber); background: rgba(255,255,255,0.06); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--forest);
+    padding: 40px 6%;
+    display: flex; justify-content: center; gap: clamp(32px, 6vw, 100px);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sage); margin-top: 6px; display: block;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 96px 6%; }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--moss); font-weight: 700; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before {
+    content: ''; width: 28px; height: 2px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+    line-height: 1.2; font-weight: 700;
+    color: var(--forest); margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 1.05rem; line-height: 1.8; color: #555;
+    max-width: 580px; font-weight: 300;
+  }
+
+  /* ── MISSION ── */
+  .mission { background: var(--cream); }
+  .mission-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 72px; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .mission-visual {
+    position: relative;
+  }
+  .mission-card-big {
+    background: linear-gradient(135deg, var(--forest), var(--moss));
+    border-radius: 24px; padding: 52px 44px;
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .mission-card-big::after {
+    content: ''; position: absolute; bottom: -30px; right: -30px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: rgba(201,162,39,0.15);
+  }
+  .mission-card-big blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; line-height: 1.6; font-style: italic;
+    color: var(--dew); position: relative; z-index: 1;
+    margin-bottom: 24px;
+  }
+  .mission-card-big cite {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--amber); font-style: normal;
+  }
+  .mission-float {
+    position: absolute; bottom: -28px; right: -28px;
+    background: var(--gold); border-radius: 16px;
+    padding: 20px 24px; text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .mission-float strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--forest); display: block; line-height: 1;
+  }
+  .mission-float span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--forest); }
+
+  /* ── PROGRAMS ── */
+  .programs { background: #f0f7e8; }
+  .programs-header { max-width: 1200px; margin: 0 auto 56px; }
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 28px; max-width: 1200px; margin: 0 auto;
+  }
+  .prog-card {
+    background: var(--white); border-radius: 20px;
+    padding: 40px 32px; border: 1px solid rgba(107,170,58,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .prog-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--forest), var(--fern));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .prog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(45,80,22,0.12); }
+  .prog-card:hover::before { transform: scaleX(1); }
+  .prog-icon {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--dew), var(--sage));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px; font-size: 1.6rem;
+  }
+  .prog-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .prog-card p { font-size: 0.92rem; line-height: 1.7; color: #666; font-weight: 300; }
+  .prog-card .learn-more {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 24px; font-size: 0.82rem; font-weight: 700;
+    color: var(--moss); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .prog-card .learn-more:hover { gap: 10px; color: var(--gold); }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--cream); }
+  .how-inner { max-width: 1200px; margin: 0 auto; }
+  .how-header { margin-bottom: 64px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .step { text-align: center; padding: 16px; position: relative; }
+  .step:not(:last-child)::after {
+    content: '→'; position: absolute; right: -14px; top: 28px;
+    color: var(--sage); font-size: 1.4rem;
+  }
+  .step-num {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--amber));
+    color: var(--forest); font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 16px rgba(201,162,39,0.35);
+  }
+  .step h4 { font-size: 1rem; color: var(--forest); margin-bottom: 10px; font-weight: 700; }
+  .step p { font-size: 0.875rem; line-height: 1.65; color: #666; font-weight: 300; }
+
+  /* ── IMPACT ── */
+  .impact {
+    background: linear-gradient(135deg, var(--forest) 0%, #1a3509 100%);
+    position: relative; overflow: hidden;
+  }
+  .impact::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(201,162,39,0.08) 0%, transparent 60%);
+  }
+  .impact-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .impact-header { margin-bottom: 56px; }
+  .impact-header .section-tag { color: var(--amber); }
+  .impact-header .section-tag::before { background: var(--amber); }
+  .impact-header .section-title { color: var(--white); }
+  .impact-header .section-lead { color: var(--dew); }
+  .impact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .impact-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px; padding: 36px 28px;
+    transition: background 0.3s;
+  }
+  .impact-card:hover { background: rgba(255,255,255,0.12); }
+  .impact-card .big-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem; font-weight: 700;
+    color: var(--amber); line-height: 1;
+    margin-bottom: 10px;
+  }
+  .impact-card h4 { color: var(--white); font-size: 1rem; margin-bottom: 10px; }
+  .impact-card p { color: var(--sage); font-size: 0.88rem; line-height: 1.65; font-weight: 300; }
+
+  /* ── DONATE ── */
+  .donate { background: #f0f7e8; }
+  .donate-inner {
+    max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .donate-amounts {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    margin: 44px 0 32px;
+  }
+  .amount-btn {
+    background: var(--white); border: 2px solid var(--sage);
+    color: var(--forest); padding: 14px 28px; border-radius: 40px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    transition: all 0.25s;
+  }
+  .amount-btn:hover, .amount-btn.active {
+    background: var(--forest); border-color: var(--forest); color: var(--amber);
+  }
+  .donate-msg { font-size: 0.9rem; color: #777; margin-top: 20px; font-weight: 300; }
+  .donate-msg a { color: var(--moss); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--cream); }
+  .test-inner { max-width: 1200px; margin: 0 auto; }
+  .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 52px; }
+  .test-card {
+    background: var(--white); border-radius: 20px; padding: 36px 28px;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 2px 20px rgba(45,80,22,0.06);
+  }
+  .test-stars { color: var(--amber); font-size: 0.9rem; margin-bottom: 16px; letter-spacing: 2px; }
+  .test-card blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; line-height: 1.7; font-style: italic;
+    color: var(--bark); margin-bottom: 24px;
+  }
+  .test-person { display: flex; align-items: center; gap: 14px; }
+  .test-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--forest), var(--moss));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; color: var(--honey);
+    font-size: 1.1rem; font-weight: 700; flex-shrink: 0;
+  }
+  .test-person-info strong { display: block; font-size: 0.9rem; color: var(--forest); }
+  .test-person-info span { font-size: 0.78rem; color: #888; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--forest); color: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; max-width: 1100px; margin: 0 auto; align-items: start; }
+  .contact-info .section-tag { color: var(--amber); }
+  .contact-info .section-tag::before { background: var(--amber); }
+  .contact-info .section-title { color: var(--white); }
+  .contact-info p { color: var(--dew); font-weight: 300; line-height: 1.8; margin-bottom: 36px; }
+  .contact-details { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .contact-details li { display: flex; gap: 14px; align-items: flex-start; }
+  .contact-details li .icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(201,162,39,0.2); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+  }
+  .contact-details li .info strong { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); margin-bottom: 2px; }
+  .contact-details li .info span { color: var(--dew); font-size: 0.9rem; font-weight: 300; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 14px 18px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07); color: var(--white);
+    font-family: 'Lato', sans-serif; font-size: 0.95rem;
+    outline: none; transition: border-color 0.25s, background 0.25s;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--gold); background: rgba(255,255,255,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111d09; padding: 56px 6% 32px;
+    color: var(--sage);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-brand p { font-size: 0.88rem; line-height: 1.8; margin-top: 16px; color: #6b8a55; max-width: 280px; }
+  .footer-col h5 {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { color: #6b8a55; font-size: 0.88rem; text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--dew); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px; font-size: 0.8rem; color: #4a6035;
+    max-width: 1200px; margin: 0 auto;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom .status {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--fern);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .mission-grid, .contact-grid, .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .programs-grid, .impact-cards, .test-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(2)::after, .step:nth-child(4)::after { display: none; }
+    .mission-float { position: static; margin-top: 24px; display: inline-block; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 14px 4%; }
+    .nav-links { display: none; }
+    .hero-content { padding: 120px 4% 60px; }
+    section { padding: 64px 4%; }
+    .steps { grid-template-columns: 1fr; }
+    .step::after { display: none !important; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" stroke="#C9A227" stroke-width="1.5"/>
+      <path d="M20 8C20 8 10 16 10 24C10 29.5 14.5 34 20 34C25.5 34 30 29.5 30 24C30 16 20 8 20 8Z" fill="#4A7C2F" opacity="0.8"/>
+      <path d="M20 12C20 12 14 19 14 24C14 27.3 16.7 30 20 30C23.3 30 26 27.3 26 24C26 19 20 12 20 12Z" fill="#C9A227" opacity="0.9"/>
+      <path d="M20 6L20 30" stroke="#FAF5E4" stroke-width="1" opacity="0.4"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span>Affordable Horizon</span>
+      <span>Housing Foundation</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#donate" class="nav-cta">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-leaves">
+    <div class="leaf"><svg width="120" height="120" viewBox="0 0 100 100"><path d="M50 5C50 5 10 30 10 60C10 80 28 95 50 95C72 95 90 80 90 60C90 30 50 5 50 5Z"/></svg></div>
+    <div class="leaf"><svg width="80" height="80" viewBox="0 0 100 100"><path d="M50 5C50 5 10 30 10 60C10 80 28 95 50 95C72 95 90 80 90 60C90 30 50 5 50 5Z"/></svg></div>
+    <div class="leaf"><svg width="60" height="60" viewBox="0 0 100 100"><path d="M50 5C50 5 10 30 10 60C10 80 28 95 50 95C72 95 90 80 90 60C90 30 50 5 50 5Z"/></svg></div>
+    <div class="leaf"><svg width="100" height="100" viewBox="0 0 100 100"><path d="M50 5C50 5 10 30 10 60C10 80 28 95 50 95C72 95 90 80 90 60C90 30 50 5 50 5Z"/></svg></div>
+    <div class="leaf"><svg width="50" height="50" viewBox="0 0 100 100"><path d="M50 5C50 5 10 30 10 60C10 80 28 95 50 95C72 95 90 80 90 60C90 30 50 5 50 5Z"/></svg></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">501(c)(3) Nonprofit Organization</div>
+    <h1>Where Every Family Finds Their <em>Horizon</em></h1>
+    <p>Affordable Horizon Housing Foundation empowers communities by creating safe, sustainable, and affordable housing opportunities for families in need — rooted in dignity, driven by hope.</p>
+    <div class="hero-btns">
+      <a href="#donate" class="btn-primary">Make a Donation</a>
+      <a href="#programs" class="btn-outline">Our Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat reveal">
+    <span class="stat-num">1,200+</span>
+    <span class="stat-label">Families Housed</span>
+  </div>
+  <div class="stat reveal">
+    <span class="stat-num">18</span>
+    <span class="stat-label">Communities Served</span>
+  </div>
+  <div class="stat reveal">
+    <span class="stat-num">$4.2M</span>
+    <span class="stat-label">in Aid Distributed</span>
+  </div>
+  <div class="stat reveal">
+    <span class="stat-num">96%</span>
+    <span class="stat-label">Funds to Programs</span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <div class="section-tag">Our Mission</div>
+      <h2 class="section-title">Building More Than Homes — Building Futures</h2>
+      <p class="section-lead">At Affordable Horizon Housing Foundation, we believe stable housing is the foundation of everything else — health, education, and economic mobility. We work hand-in-hand with families, local governments, and community partners to close the affordability gap and create lasting change.</p>
+      <br><br>
+      <p style="font-size:0.95rem;line-height:1.8;color:#666;font-weight:300;">Founded on the principle that no family should choose between paying rent and putting food on the table, we provide housing assistance, financial counseling, tenant advocacy, and new construction support in underserved communities.</p>
+    </div>
+    <div class="mission-visual reveal">
+      <div class="mission-card-big">
+        <blockquote>"Housing is not just a roof. It is a place where children do their homework, where parents plan for tomorrow, where communities take root and grow."</blockquote>
+        <cite>— AHHF Mission Statement</cite>
+      </div>
+      <div class="mission-float">
+        <strong>2009</strong>
+        <span>Est. Year</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-header reveal">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Programs That Move People Forward</h2>
+    <p class="section-lead">Six core programs addressing the full spectrum of housing need — from prevention to ownership.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card reveal">
+      <div class="prog-icon">🏠</div>
+      <h3>Emergency Housing Assistance</h3>
+      <p>Rapid-response rental support for families facing eviction, utility shutoffs, or sudden housing instability due to job loss, illness, or disaster.</p>
+      <a href="#contact" class="learn-more">Apply Now →</a>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">🌱</div>
+      <h3>Affordable New Construction</h3>
+      <p>We develop and co-develop below-market-rate housing units in partnership with city agencies, ensuring affordability for 30+ years.</p>
+      <a href="#contact" class="learn-more">Learn More →</a>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">🤝</div>
+      <h3>Homeownership Pathways</h3>
+      <p>Down payment assistance, first-time buyer education, and credit counseling to help renters transition to homeownership and build generational wealth.</p>
+      <a href="#contact" class="learn-more">Learn More →</a>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">⚖️</div>
+      <h3>Tenant Rights & Advocacy</h3>
+      <p>Free legal guidance, mediation services, and policy advocacy to protect tenants from unjust evictions, discrimination, and unsafe conditions.</p>
+      <a href="#contact" class="learn-more">Learn More →</a>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">📚</div>
+      <h3>Financial Literacy</h3>
+      <p>Workshops, one-on-one coaching, and online tools to help families budget, save, build credit, and achieve long-term housing stability.</p>
+      <a href="#contact" class="learn-more">Learn More →</a>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">♻️</div>
+      <h3>Green & Sustainable Housing</h3>
+      <p>Retrofitting older affordable units with energy-efficient upgrades to lower utility costs for low-income families and reduce environmental impact.</p>
+      <a href="#contact" class="learn-more">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <div class="section-tag">How We Help</div>
+      <h2 class="section-title">From First Contact to Stable Home</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h4>Reach Out</h4>
+        <p>Call, email, or visit us. No situation is too complicated — every inquiry gets a response within 24 hours.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h4>Assessment</h4>
+        <p>A housing counselor evaluates your needs, income, and eligibility across all available programs.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h4>Custom Plan</h4>
+        <p>We build a personalized action plan — from immediate aid to long-term housing goals.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h4>Ongoing Support</h4>
+        <p>Our team stays with you through every step — from application to move-in and beyond.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="impact-inner">
+    <div class="impact-header reveal">
+      <div class="section-tag">Our Impact</div>
+      <h2 class="section-title">Real Change, Measurable Results</h2>
+      <p class="section-lead">Every dollar donated to AHHF creates lasting, community-wide change. Here's what we've accomplished together.</p>
+    </div>
+    <div class="impact-cards">
+      <div class="impact-card reveal">
+        <div class="big-num">1,200+</div>
+        <h4>Families in Stable Housing</h4>
+        <p>Families who received emergency, transitional, or permanent housing support and remained housed 12 months later.</p>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big-num">340</div>
+        <h4>New Affordable Units Built</h4>
+        <p>Below-market-rate units developed in partnership with city and county housing authorities since 2009.</p>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big-num">87%</div>
+        <h4>Eviction Prevention Rate</h4>
+        <p>Of families who came to us facing eviction were able to remain in their homes with our legal and financial assistance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-inner">
+    <div class="reveal">
+      <div class="section-tag">Community Voices</div>
+      <h2 class="section-title">Stories of Hope & Home</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"We were three weeks from living in our car when AHHF stepped in. They didn't just pay our back rent — they helped us build a plan so it never happened again."</blockquote>
+        <div class="test-person">
+          <div class="test-avatar">M</div>
+          <div class="test-person-info">
+            <strong>Maria T.</strong>
+            <span>Emergency Assistance Recipient, 2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"Thanks to the homeownership program, I bought my first home at 34. I grew up in Section 8 housing — my kids will grow up with equity. That's generational change."</blockquote>
+        <div class="test-person">
+          <div class="test-avatar">D</div>
+          <div class="test-person-info">
+            <strong>Derrick L.</strong>
+            <span>Homeownership Program Graduate, 2022</span>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"Our nonprofit partnered with AHHF on a 60-unit affordable complex. Their expertise, community relationships, and dedication made a project we thought impossible a reality."</blockquote>
+        <div class="test-person">
+          <div class="test-avatar">R</div>
+          <div class="test-person-info">
+            <strong>Rachel K.</strong>
+            <span>Community Development Partner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="donate-inner reveal">
+    <div class="section-tag" style="justify-content:center;">Support Our Work</div>
+    <h2 class="section-title" style="text-align:center;">Give a Family a Place to Call Home</h2>
+    <p class="section-lead" style="margin:0 auto;text-align:center;">Your donation funds emergency assistance, new construction, and housing counseling. 96¢ of every dollar goes directly to programs — we keep overhead lean so your gift goes further.</p>
+    <div class="donate-amounts">
+      <button class="amount-btn" onclick="selectAmount(this)">$25</button>
+      <button class="amount-btn active" onclick="selectAmount(this)">$50</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$100</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$250</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$500</button>
+      <button class="amount-btn" onclick="selectAmount(this)">Custom</button>
+    </div>
+    <a href="#contact" class="btn-primary" style="display:inline-block;">Donate Securely Online</a>
+    <p class="donate-msg">Affordable Horizon Housing Foundation is a registered 501(c)(3). All donations are tax-deductible. <a href="#contact">Contact us</a> for wire transfer or planned giving.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">We're Here to Help</h2>
+      <p>Whether you need housing assistance, want to partner with us, volunteer, or make a donation — our team is ready. Reach out in the way that works best for you.</p>
+      <ul class="contact-details">
+        <li>
+          <div class="icon">📍</div>
+          <div class="info"><strong>Address</strong><span>1200 Green Valley Blvd, Suite 300<br>Your City, CA 90000</span></div>
+        </li>
+        <li>
+          <div class="icon">📞</div>
+          <div class="info"><strong>Phone</strong><span>(800) 555-0199</span></div>
+        </li>
+        <li>
+          <div class="icon">✉️</div>
+          <div class="info"><strong>Email</strong><span>info@ahhfhousing.org</span></div>
+        </li>
+        <li>
+          <div class="icon">🕐</div>
+          <div class="info"><strong>Hours</strong><span>Mon–Fri 8:30am – 5:30pm<br>Emergency line available 24/7</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group"><input type="text" placeholder="First Name" required></div>
+          <div class="form-group"><input type="text" placeholder="Last Name" required></div>
+        </div>
+        <div class="form-group"><input type="email" placeholder="Email Address" required></div>
+        <div class="form-group"><input type="tel" placeholder="Phone Number"></div>
+        <div class="form-group">
+          <select style="width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);font-family:'Lato',sans-serif;font-size:0.95rem;outline:none;">
+            <option value="" disabled selected>How can we help?</option>
+            <option>I need housing assistance</option>
+            <option>I want to volunteer</option>
+            <option>Partnership inquiry</option>
+            <option>Donation or planned giving</option>
+            <option>Media / Press inquiry</option>
+            <option>General question</option>
+          </select>
+        </div>
+        <div class="form-group"><textarea placeholder="Tell us more about your situation or question..."></textarea></div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:0;text-decoration:none;display:flex;align-items:center;gap:12px;">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="#C9A227" stroke-width="1.5"/>
+          <path d="M20 8C20 8 10 16 10 24C10 29.5 14.5 34 20 34C25.5 34 30 29.5 30 24C30 16 20 8 20 8Z" fill="#4A7C2F" opacity="0.8"/>
+          <path d="M20 12C20 12 14 19 14 24C14 27.3 16.7 30 20 30C23.3 30 26 27.3 26 24C26 19 20 12 20 12Z" fill="#C9A227" opacity="0.9"/>
+        </svg>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--honey);font-weight:700;">Affordable Horizon</div>
+          <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);">Housing Foundation</div>
+        </div>
+      </div>
+      <p>Empowering families. Building communities. Creating affordable housing opportunities since 2009.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Programs</h5>
+      <ul>
+        <li><a href="#">Emergency Housing</a></li>
+        <li><a href="#">New Construction</a></li>
+        <li><a href="#">Homeownership</a></li>
+        <li><a href="#">Tenant Rights</a></li>
+        <li><a href="#">Financial Literacy</a></li>
+        <li><a href="#">Green Housing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Organization</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Annual Reports</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Volunteer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Corporate Giving</a></li>
+        <li><a href="#">Planned Giving</a></li>
+        <li><a href="#">Apply for Help</a></li>
+        <li><a href="#">Partner With Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Affordable Horizon Housing Foundation. All rights reserved. 501(c)(3) EIN: 12-3456789</span>
+    <div class="status">
+      <div class="status-dot"></div>
+      <span>Accepting applications</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Donation amount select
+  function selectAmount(btn) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (btn.textContent === 'Custom') {
+      const val = prompt('Enter a custom donation amount ($):');
+      if (val) btn.textContent = '$' + parseInt(val).toLocaleString();
+    }
+  }
+
+  // Form handler
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--fern)';
+    setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; }, 3000);
+  }
+</script>
+</body>
+</html>
